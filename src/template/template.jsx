@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Title from "../components/title/Title";
 import TopHeader from "../components/topHeader/TopHeader";
 import Header from "../components/header/Header";
@@ -9,7 +9,11 @@ import DealsOfTheDay from "../components/dealsOfTheDay/DealsOfTheDay";
 import HotMenu from "../components/hotMenu/HotMenu";
 import LatestPickedRow from "../components/latestPickedRow/LatestPickedRow";
 
-const App = props => {
+const App = (props) => {
+  useEffect(() => {
+    console.log("okokokok");
+  }, []);
+
   const title = "Honey Bunny";
   return (
     <div>
