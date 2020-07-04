@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 require("./app/route/userauth.route")(app);
+require("./app/route/productactivity.route")(app);
 
 // simple route
 

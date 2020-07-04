@@ -1,7 +1,7 @@
 import React from "react";
 import Product from "../../elements/product/Product";
 
-const LatestPickedRow = props => {
+const LatestPickedRow = (props) => {
   return (
     <div className="row">
       {/*  section title  */}
