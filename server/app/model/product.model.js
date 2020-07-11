@@ -2,16 +2,11 @@ const DB = require("../config/db.config");
 const { v4: uuidv4 } = require("uuid");
 
 module.exports = {
-  createCategory: (data, callback) => {
+  createCategory: (data, image, callback) => {
+    let status = data.status == "true" ? 1 : 0;
     DB.query(
-      `insert into category(categoryid , categoryname , description, picture, active) values(?,?,?,?,?)`,
-      [
-        uuidv4(),
-        data.categoryname,
-        data.description,
-        data.picture,
-        data.active,
-      ],
+      `insert into category(categoryid , categoryname , description, picture, status) values(?,?,?,?,?)`,
+      [uuidv4(), data.categoryname, data.description, image, status],
       (error, result, fields) => {
         if (error) {
           return callback(error);
