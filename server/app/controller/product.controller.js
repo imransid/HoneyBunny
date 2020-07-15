@@ -45,7 +45,7 @@ module.exports = {
             });
           }
           //   sucess
-          return res.sendStatus(200).json({
+          return res.status(200).json({
             sucess: 1,
             data: results,
           });

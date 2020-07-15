@@ -11,9 +11,6 @@ module.exports = (app) => {
   //   list all categories
   router.get("/categories", getCategory);
 
-  // create new categories
-  router.post("/categories", checkToken, createCategory);
-
   // // Retrieve all getUsers
   // router.post("/users/:id", checkToken, getUsersByID);
 

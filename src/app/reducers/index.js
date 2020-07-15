@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
-import CONVERTER from "./Converter";
+import CATEGORY from "./Category";
 
 export default combineReducers({
-  CONVERTER,
+  CATEGORY,
 });

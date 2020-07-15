@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { _add_Categories, onSubmit, onClick } from "./Methods";
+import ListOfCategories from "./ListOfCategories";
 
 const CategoryMenu = (props) => {
   return (
@@ -15,35 +16,13 @@ const CategoryMenu = (props) => {
   );
 };
 
-// List Of Categories
-
-const ListOfCategories = (props) => {
-  return (
-    <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-body">List Of All Categories</div>
-      </div>
-
-      <ul class="list-group">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Morbi leo risus</li>
-        <a href="#" class="list-group-item">
-          Vestibulum at eros
-        </a>
-        <li class="list-group-item">Porta ac consectetur ac</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-      </ul>
-    </div>
-  );
-};
-
 // Add Categories
 
 const AddCategories = (props) => {
   const [status, SetStatus] = useState("");
   const [iMage, SetiMage] = useState("");
   const [description, SetDescription] = useState("");
+  const [subcategory, SetSubcategory] = useState(false);
   const [name, SetName] = useState("");
   return (
     <div class="col-md-12">
@@ -83,7 +62,7 @@ const AddCategories = (props) => {
             required
           />
         </div>
-        <div class="sform-group">
+        <div class="form-group">
           <label htmlFor="exampleInputFile">Status</label>
           <div className="radio">
             <label class="radio-inline">
@@ -110,9 +89,26 @@ const AddCategories = (props) => {
             </label>
           </div>
         </div>
+        <div class="form-group">
+          <label htmlFor="exampleInputFile">Sub Category</label>
+          <div className="radio">
+            <label class="checkbox-inline">
+              <input
+                type="checkbox"
+                id="inlineCheckbox1"
+                value="option1"
+                onChange={() => SetSubcategory(!subcategory)}
+              />{" "}
+              Sub Category
+            </label>
+          </div>
+        </div>
+
         <button
           type="button"
-          onClick={() => onSubmit(iMage, status, description, name)}
+          onClick={() =>
+            onSubmit(iMage, status, description, name, subcategory)
+          }
           class="btn btn-default"
         >
           Submit
@@ -145,6 +141,11 @@ const Categories = (props) => {
           />
           <CategoryMenu
             name="Edit Category"
+            status={activeCategory}
+            chgCategory={(e) => SetActiveCategory(e)}
+          />
+          <CategoryMenu
+            name="Add Sub Category"
             status={activeCategory}
             chgCategory={(e) => SetActiveCategory(e)}
           />

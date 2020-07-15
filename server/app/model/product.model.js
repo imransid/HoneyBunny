@@ -4,9 +4,17 @@ const { v4: uuidv4 } = require("uuid");
 module.exports = {
   createCategory: (data, image, callback) => {
     let status = data.status == "true" ? 1 : 0;
+    let subcategory = data.subcategory == "true" ? 1 : 0;
     DB.query(
-      `insert into category(categoryid , categoryname , description, picture, status) values(?,?,?,?,?)`,
-      [uuidv4(), data.categoryname, data.description, image, status],
+      `insert into category(categoryid , categoryname , description, picture, status, subcategory) values(?,?,?,?,?,?)`,
+      [
+        uuidv4(),
+        data.categoryname,
+        data.description,
+        image,
+        status,
+        subcategory,
+      ],
       (error, result, fields) => {
         if (error) {
           return callback(error);
@@ -17,7 +25,7 @@ module.exports = {
   },
   getCategory: (callback) => {
     DB.query(
-      `select categoryid , categoryname , description, picture, active from category`,
+      `select categoryid , categoryname , description, picture, status, subcategory, date from category`,
       [],
       (error, result, fields) => {
         if (error) {

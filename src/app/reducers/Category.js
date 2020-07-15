@@ -4,15 +4,17 @@ import actionType from "../constant/constant";
 // import usertest from '../actions/audit'
 
 const initialState = {
-  convert_result: "",
+  categorie: [],
+  loading: true,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case actionType.CONVERT:
+    case actionType.ALL_CATEGORY_LOADED_FROM_API:
       return {
         ...state,
-        convert_result: action.result,
+        categorie: action.categorie,
+        loading: false,
       };
     default:
       return state;
