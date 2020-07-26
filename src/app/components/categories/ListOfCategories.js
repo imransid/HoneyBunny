@@ -1,8 +1,11 @@
 // List Of Categories
 import React, { useState, useEffect } from "react";
+import CusTomModal from "./CustomModal";
 import { useSelector, useDispatch } from "react-redux";
 import { init_category } from "../../actions/Category";
 const moment = require("moment");
+
+// import Modal from "./CustomModal";
 
 const CustomButton = (props) => {
   return (
@@ -25,69 +28,6 @@ const CustomButton = (props) => {
   );
 };
 
-const Modal = (props) => {
-  let date =
-    props.categorie.length !== 0 && props.content !== -1
-      ? moment(props.categorie[props.content].date)
-          .utc()
-          .format("YYYY-MM-DD hh:mm A")
-      : "";
-
-  let name =
-    props.categorie.length !== 0 && props.content !== -1
-      ? props.categorie[props.content].categoryname
-      : "";
-  let description =
-    props.categorie.length !== 0 && props.content !== -1
-      ? props.categorie[props.content].description
-      : "";
-  let image =
-    props.categorie.length !== 0 && props.content !== -1
-      ? props.categorie[props.content].picture
-      : "";
-  let status =
-    props.categorie.length !== 0 && props.content !== -1
-      ? props.categorie[props.content].status
-      : "";
-  let subcategory =
-    props.categorie.length !== 0 && props.content !== -1
-      ? props.categorie[props.content].subcategory
-      : "";
-  return (
-    <div class="modal fade" id="myModal" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">
-              &times;
-            </button>
-            <h4 class="modal-title">{props.status}</h4>
-          </div>
-          <div class="modal-body">
-            <label>Name : </label>
-            <p>{name}</p>
-            <label>Categories Description : </label>
-            <p>{description}</p>
-            <label>Created Date : </label>
-            <p>{date}</p>
-            <label>Image : </label>
-            <p>{image}</p>
-            <label>Status : </label>
-            <p>{status == 1 ? "Active" : "Deactive"}</p>
-            <label>Sub Category : </label>
-            <p>{subcategory == 1 ? "Active" : "Deactive"}</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const ListOfCategories = (props) => {
   const dispatch = useDispatch();
   const categories = useSelector((state) => state.CATEGORY.categorie);
@@ -96,8 +36,6 @@ const ListOfCategories = (props) => {
   const [SLnumber, SetSLnumber] = useState(-1);
   const [ShowBox, SetShowBox] = useState(false);
   const [ModalStatus, SetModalStatus] = useState("");
-
-  console.log("categories", categories);
 
   useEffect(() => {
     dispatch(init_category());
@@ -114,7 +52,12 @@ const ListOfCategories = (props) => {
         <div class="panel-body">List Of All Categories</div>
       </div>
 
-      <Modal status={ModalStatus} categorie={categories} content={SLnumber} />
+      <CusTomModal
+        status={ModalStatus}
+        categorie={categories}
+        content={SLnumber}
+        ModalStatus={ModalStatus}
+      />
 
       <ul class="list-group">
         {loader == false

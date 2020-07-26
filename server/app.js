@@ -21,6 +21,9 @@ require("./app/route/userauth.route")(app);
 require("./app/route/productactivity.route")(app);
 require("./app/route/upload.route")(app);
 
+app.use(express.static("public"));
+app.use("/images", express.static(__dirname + "/public/uploads"));
+
 // simple route
 
 let name = dot.parsed.SIGN;
